@@ -26,3 +26,20 @@ group by arrival_date_year,hotel
 
 
 select * from dbo.market_segment$
+
+
+with hotels as(
+select * from dbo.['2018$']
+union
+select * from dbo.['2019$']
+union
+select * from dbo.['2020$']) 
+
+--Here we'll join on market_segment and meal_cost column from both the tables 
+select * from hotels
+left join dbo.market_segment$ 
+on hotels.market_segment= market_segment$.market_segment 
+left join dbo.meal_cost$
+on hotels.meal=meal_cost$.meal
+
+# Now we've developed our SQL for Power BI
